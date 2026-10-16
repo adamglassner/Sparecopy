@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sparecopy – Edit backup plan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;min-height:44px;padding:14px;border-radius:12px;border:1px solid #D3D6CE;background:#FFFFFF;color:#15171A;font:inherit;cursor:pointer;box-sizing:border-box}
+.opt.sel{border-color:#0E6B5C;background:#EAF4F1;box-shadow:inset 0 0 0 1px #0E6B5C}
+.pill{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #C9CCC4;background:#FFFFFF;color:#15171A;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.pill.sel{background:#15171A;border-color:#15171A;color:#FFFFFF}
+.field{min-height:44px;padding:0 12px;border-radius:10px;border:1px solid #C9CCC4;background:#FFFFFF;font:400 15px 'IBM Plex Sans',sans-serif;color:#15171A;box-sizing:border-box}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #15171A">
+<header style="background: #15171A; color: #F3F4F1">
+<div style="max-width: 1360px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; min-height: 64px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.01em">
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="6" width="15" height="17" rx="3" stroke="#7FD3C1" stroke-width="2"></rect><rect x="9" y="2" width="15" height="17" rx="3" fill="#15171A" stroke="#FFFFFF" stroke-width="2"></rect></svg>
+Sparecopy
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px; flex: 1 1 auto">
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Overview</a>
+<a href="Device.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Devices</a>
+<a href="Plan.dc.html" aria-current="page" style="padding: 10px 14px; border-radius: 8px; background: #2C3037; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500">Backup plans</a>
+<a href="Restore.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Restore</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Destinations</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Settings</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #C9CDD3; font-family: 'IBM Plex Mono', monospace">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #4ADE80"></span>
+Server online · Docker on Basement NAS
+</div>
+</div>
+</header>
+
+<main style="max-width: 1360px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box">
+<nav aria-label="Breadcrumb" style="font-size: 14px; color: #5B6068; display: flex; flex-wrap: wrap; gap: 8px">
+<a href="Main.dc.html">Overview</a><span aria-hidden="true">/</span><a href="Device.dc.html">Mom &amp; Dad's PC</a><span aria-hidden="true">/</span><span style="color: #15171A">Edit plan</span>
+</nav>
+<h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em">Edit backup plan</h1>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px">
+<h2 style="margin: 0 0 14px; font-size: 18px; font-weight: 700"><span style="color: #0E6B5C">1</span>  Name &amp; device</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<label style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Plan name
+<input class="field" type="text" defaultValue="Everyday copy">
+</label>
+<label style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Back up this device
+<select class="field" defaultValue="pc">
+<option value="pc">Mom &amp; Dad's PC — Parents' house</option>
+<option value="laptop">Mom's laptop — Parents' house</option>
+<option value="dad">Dad's phone — Parents' house</option>
+<option value="adam">Adam's laptop — Adam's place</option>
+</select>
+</label>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px">
+<h2 style="margin: 0 0 4px; font-size: 18px; font-weight: 700"><span style="color: #0E6B5C">2</span>  Where should the copy go?</h2>
+<p style="margin: 0 0 14px; font-size: 14px; color: #5B6068">Each plan has one destination. Want a second copy somewhere else? Add another plan.</p>
+<div role="radiogroup" aria-label="Destination" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px">
+<sc-for list="{{ dests }}" as="d" hint-placeholder-count="4">
+<button type="button" role="radio" aria-checked="{{ d.sel }}" class="opt {{ d.cls }}" onClick="{{ d.pick }}">
+<span style="flex: none; color: #15171A; margin-top: 2px">
+<sc-if value="{{ d.isUsb }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 14h.01M11 14h6"></path></svg></sc-if>
+<sc-if value="{{ d.isNas }}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h3"></path></svg></sc-if>
+<sc-if value="{{ d.isServer }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"></rect><rect x="3" y="13" width="18" height="7" rx="1.5"></rect><path d="M7 7.5h.01M7 16.5h.01"></path></svg></sc-if>
+</span>
+<span style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-weight: 600; font-size: 15px">{{ d.name }}</span>
+<span style="font-size: 13px; color: #5B6068">{{ d.where }}</span>
+<span style="font-size: 12px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">{{ d.free }}</span>
+</span>
+</button>
+</sc-for>
+<button type="button" class="opt" style="border-style: dashed; align-items: center; color: #0E6B5C; font-weight: 600">+ Add a destination<br><span style="font-weight: 400; font-size: 13px; color: #5B6068">NAS share, server folder or USB drive</span></button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px">
+<h2 style="margin: 0 0 4px; font-size: 18px; font-weight: 700"><span style="color: #0E6B5C">3</span>  What to back up</h2>
+<p style="margin: 0 0 14px; font-size: 14px; color: #5B6068">Pick folders on Mom &amp; Dad's PC. Click a folder name to choose individual subfolders.</p>
+<div style="border: 1px solid #E1E3DC; border-radius: 12px; overflow: hidden">
+<sc-for list="{{ folders }}" as="f" hint-placeholder-count="7">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 14px; min-height: 52px; border-top: 1px solid #ECEEE8">
+<input type="checkbox" id="{{ f.id }}" checked="{{ f.on }}" onChange="{{ f.toggle }}" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6068" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+<label for="{{ f.id }}" style="flex: 1; display: flex; flex-direction: column; padding: 8px 0; cursor: pointer">
+<span style="font-weight: 600; font-size: 15px">{{ f.name }}</span>
+<span style="font-size: 12px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">{{ f.path }}</span>
+</label>
+<span style="font-size: 13px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">{{ f.sizeLabel }}</span>
+</div>
+</sc-for>
+</div>
+<div style="margin-top: 16px">
+<div style="font-size: 13px; font-weight: 600; color: #3D4148; margin-bottom: 8px">Always skip</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 12px; border-radius: 999px; background: #F0F1ED; font-family: 'IBM Plex Mono', monospace; font-size: 13px">*.tmp <button type="button" aria-label="Remove *.tmp" style="width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #5B6068">×</button></span>
+<span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 12px; border-radius: 999px; background: #F0F1ED; font-family: 'IBM Plex Mono', monospace; font-size: 13px">Thumbs.db <button type="button" aria-label="Remove Thumbs.db" style="width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #5B6068">×</button></span>
+<span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 12px; border-radius: 999px; background: #F0F1ED; font-family: 'IBM Plex Mono', monospace; font-size: 13px">Recycle Bin <button type="button" aria-label="Remove Recycle Bin" style="width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #5B6068">×</button></span>
+<span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 12px; border-radius: 999px; background: #F0F1ED; font-family: 'IBM Plex Mono', monospace; font-size: 13px">files over 10 GB <button type="button" aria-label="Remove files over 10 GB" style="width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #5B6068">×</button></span>
+<button type="button" style="min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px dashed #B9BDB4; background: #FFFFFF; color: #0E6B5C; font: 600 13px 'IBM Plex Sans', sans-serif; cursor: pointer">+ Add rule</button>
+</div>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px">
+<h2 style="margin: 0 0 14px; font-size: 18px; font-weight: 700"><span style="color: #0E6B5C">4</span>  When to run</h2>
+<div role="radiogroup" aria-label="Schedule" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ freqs }}" as="q" hint-placeholder-count="5">
+<button type="button" role="radio" aria-checked="{{ q.sel }}" class="pill {{ q.cls }}" onClick="{{ q.pick }}">{{ q.label }}</button>
+</sc-for>
+</div>
+<div style="margin-top: 16px; padding: 16px; border-radius: 12px; background: #F6F7F4">
+<sc-if value="{{ isHourly }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Every
+<select class="field" defaultValue="4"><option value="1">1 hour</option><option value="2">2 hours</option><option value="4">4 hours</option><option value="6">6 hours</option></select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Between
+<input class="field" type="time" defaultValue="08:00">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">and
+<input class="field" type="time" defaultValue="22:00">
+</label>
+</div>
+</sc-if>
+<sc-if value="{{ isDaily }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Every day at
+<input class="field" type="time" defaultValue="19:00">
+</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">Also run when the USB drive is plugged in</label>
+</div>
+</sc-if>
+<sc-if value="{{ isWeekly }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Day
+<select class="field" defaultValue="sun"><option value="sun">Sunday</option><option value="mon">Monday</option><option value="wed">Wednesday</option><option value="sat">Saturday</option></select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Time
+<input class="field" type="time" defaultValue="10:00">
+</label>
+</div>
+</sc-if>
+<sc-if value="{{ isPlug }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 14px">Runs automatically a minute after the destination drive is connected, at most once every 12 hours.</p>
+</sc-if>
+<sc-if value="{{ isManual }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 14px">Only runs when someone presses <strong>Run now</strong> here or on the device.</p>
+</sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; margin-top: 12px">
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">If the PC was off, run the missed backup at next startup</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">Run quietly — lower priority so the PC stays fast</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">Wake the PC from sleep to run</label>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px">
+<h2 style="margin: 0 0 14px; font-size: 18px; font-weight: 700"><span style="color: #0E6B5C">5</span>  Versions &amp; security</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<label style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Daily versions to keep
+<input class="field" type="number" defaultValue="30">
+</label>
+<label style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Weekly versions
+<input class="field" type="number" defaultValue="0">
+</label>
+<label style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3D4148">Monthly versions
+<input class="field" type="number" defaultValue="12">
+</label>
+</div>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 10px; font-size: 14px"><input type="checkbox" defaultChecked="{{ true }}" style="width: 20px; height: 20px; accent-color: #0E6B5C; margin: 0">Encrypt this backup with a password</label>
+<p style="margin: 4px 0 0; font-size: 13px; color: #7A4E00; background: #FBEFD5; padding: 10px 12px; border-radius: 10px">Keep the password somewhere safe — without it, files can't be restored.</p>
+</section>
+</div>
+
+<aside style="flex: 1 1 320px; min-width: 0">
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">Summary</h2>
+<dl style="margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 10px 12px; font-size: 14px">
+<dt style="color: #5B6068">Device</dt><dd style="margin: 0">Mom &amp; Dad's PC</dd>
+<dt style="color: #5B6068">Copy to</dt><dd style="margin: 0; font-weight: 600">{{ destName }}</dd>
+<dt style="color: #5B6068">Files</dt><dd style="margin: 0">{{ countLabel }} · <span style="font-family: 'IBM Plex Mono', monospace">{{ totalLabel }}</span></dd>
+<dt style="color: #5B6068">Schedule</dt><dd style="margin: 0">{{ schedLabel }}</dd>
+<dt style="color: #5B6068">Versions</dt><dd style="margin: 0">30 daily · 12 monthly</dd>
+</dl>
+<div style="font-size: 13px; color: #3D4148; background: #F3F4F1; border-radius: 10px; padding: 12px">{{ firstRun }}</div>
+<button type="button" style="min-height: 48px; border-radius: 10px; border: 0; background: #0E6B5C; color: #FFFFFF; font: 600 15px 'IBM Plex Sans', sans-serif; cursor: pointer">Save plan</button>
+<a href="Device.dc.html" style="text-align: center; font-size: 14px; font-weight: 600; padding: 10px">Cancel</a>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1620}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dest: "usb",
+      freq: "daily",
+      on: { pictures: true, documents: true, desktop: true, videos: true, music: false, downloads: false, archive: false }
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const destList = [
+      { id: "usb", kind: "usb", name: "WD Elements USB drive", where: "Plugged into this PC", free: "2.8 TB free", speed: 0.12 },
+      { id: "fnas", kind: "nas", name: "Family NAS", where: "Parents' house · same network", free: "5.6 TB free", speed: 0.2 },
+      { id: "bnas", kind: "nas", name: "Basement NAS", where: "Adam's place · over the internet", free: "5.9 TB free", speed: 1.4 },
+      { id: "srv", kind: "server", name: "Backup server", where: "Adam's place · over the internet", free: "1.2 TB free", speed: 1.4 }
+    ];
+    const dests = destList.map((d) => Object.assign({}, d, {
+      sel: s.dest === d.id,
+      cls: s.dest === d.id ? "sel" : "",
+      isUsb: d.kind === "usb",
+      isNas: d.kind === "nas",
+      isServer: d.kind === "server",
+      pick: () => this.setState({ dest: d.id })
+    }));
+    const folderList = [
+      { id: "pictures", name: "Pictures", path: "C:\\Users\\Mom\\Pictures", size: 96.4 },
+      { id: "documents", name: "Documents", path: "C:\\Users\\Mom\\Documents", size: 22.1 },
+      { id: "desktop", name: "Desktop", path: "C:\\Users\\Mom\\Desktop", size: 3.8 },
+      { id: "videos", name: "Videos", path: "C:\\Users\\Mom\\Videos", size: 61.7 },
+      { id: "music", name: "Music", path: "C:\\Users\\Mom\\Music", size: 14.2 },
+      { id: "downloads", name: "Downloads", path: "C:\\Users\\Mom\\Downloads", size: 38.9 },
+      { id: "archive", name: "Family Archive (second drive)", path: "D:\\Family Archive", size: 120.0 }
+    ];
+    let total = 0;
+    let count = 0;
+    const folders = folderList.map((f) => {
+      const isOn = !!s.on[f.id];
+      if (isOn) { total += f.size; count += 1; }
+      return Object.assign({}, f, {
+        on: isOn,
+        sizeLabel: f.size.toFixed(1) + " GB",
+        toggle: () => this.setState({ on: Object.assign({}, s.on, { [f.id]: !isOn }) })
+      });
+    });
+    const freqList = [
+      { id: "hourly", label: "Every few hours", text: "Every 4 hours, 8 AM – 10 PM" },
+      { id: "daily", label: "Daily", text: "Every day at 7:00 PM + when drive plugged in" },
+      { id: "weekly", label: "Weekly", text: "Sundays at 10:00 AM" },
+      { id: "plug", label: "When drive is plugged in", text: "Whenever the drive is connected" },
+      { id: "manual", label: "Only when I press Run", text: "Manual only" }
+    ];
+    const freqs = freqList.map((q) => Object.assign({}, q, {
+      sel: s.freq === q.id,
+      cls: s.freq === q.id ? "sel" : "",
+      pick: () => this.setState({ freq: q.id })
+    }));
+    const dest = destList.find((d) => d.id === s.dest);
+    const sched = freqList.find((q) => q.id === s.freq);
+    const minutes = Math.max(1, Math.round(total * dest.speed * 10));
+    const firstRun = count === 0
+      ? "Pick at least one folder to back up."
+      : "First backup copies " + total.toFixed(1) + " GB — about " + (minutes >= 60 ? (minutes / 60).toFixed(1) + " hours" : minutes + " minutes") + ". After that only changed files are copied.";
+    return {
+      dests: dests,
+      folders: folders,
+      freqs: freqs,
+      isHourly: s.freq === "hourly",
+      isDaily: s.freq === "daily",
+      isWeekly: s.freq === "weekly",
+      isPlug: s.freq === "plug",
+      isManual: s.freq === "manual",
+      destName: dest.name,
+      countLabel: count + (count === 1 ? " folder" : " folders"),
+      totalLabel: total.toFixed(1) + " GB",
+      schedLabel: sched.text,
+      firstRun: firstRun
+    };
+  }
+}
+</script>
+</body>
+</html>

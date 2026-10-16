@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sparecopy – Browse &amp; restore</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+.snap{display:flex;flex-direction:column;gap:2px;width:100%;min-height:44px;text-align:left;padding:10px 12px;border:0;border-radius:10px;background:transparent;color:#15171A;font:inherit;cursor:pointer}
+.snap.sel{background:#15171A;color:#FFFFFF}
+.snap .sub{font-size:12px;color:#5B6068}
+.snap.sel .sub{color:#C9CDD3}
+.tab{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid #C9CCC4;background:#FFFFFF;color:#15171A;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.tab.sel{background:#EAF4F1;border-color:#0E6B5C;color:#0A4F44;font-weight:600}
+.tag{display:inline-flex;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600}
+.tag.new{background:#E3F1E7;color:#17652F}
+.tag.changed{background:#E3EBFC;color:#1E46B8}
+.tag.deleted{background:#FBE4E1;color:#A3231A}
+.row{display:grid;grid-template-columns:32px 28px minmax(220px,1fr) 110px 150px 100px;gap:12px;align-items:center;padding:0 16px;min-height:52px;border-top:1px solid #ECEEE8}
+.row.on{background:#F2F8F6}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #15171A">
+<header style="background: #15171A; color: #F3F4F1">
+<div style="max-width: 1360px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; min-height: 64px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.01em">
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="6" width="15" height="17" rx="3" stroke="#7FD3C1" stroke-width="2"></rect><rect x="9" y="2" width="15" height="17" rx="3" fill="#15171A" stroke="#FFFFFF" stroke-width="2"></rect></svg>
+Sparecopy
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px; flex: 1 1 auto">
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Overview</a>
+<a href="Device.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Devices</a>
+<a href="Plan.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Backup plans</a>
+<a href="Restore.dc.html" aria-current="page" style="padding: 10px 14px; border-radius: 8px; background: #2C3037; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500">Restore</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Destinations</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Settings</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #C9CDD3; font-family: 'IBM Plex Mono', monospace">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #4ADE80"></span>
+Server online · Docker on Basement NAS
+</div>
+</div>
+</header>
+
+<main style="max-width: 1360px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 20px; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em">Browse &amp; restore</h1>
+<p style="margin: 6px 0 0; color: #5B6068; font-size: 15px">See exactly what was backed up, at any point in time, and bring it back.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">Device
+<select defaultValue="pc" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CCC4; background: #FFFFFF; font: 400 15px 'IBM Plex Sans', sans-serif">
+<option value="pc">Mom &amp; Dad's PC</option><option value="ml">Mom's laptop</option><option value="al">Adam's laptop</option><option value="ap">Adam's phone</option>
+</select>
+</label>
+</div>
+</div>
+
+<div role="tablist" aria-label="Backup plan" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ plans }}" as="pl" hint-placeholder-count="2">
+<button type="button" role="tab" aria-selected="{{ pl.sel }}" class="tab {{ pl.cls }}" onClick="{{ pl.pick }}">{{ pl.label }}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<aside style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 14px">
+<h2 style="margin: 4px 8px 10px; font-size: 15px; font-weight: 700">Backup versions</h2>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{ snaps }}" as="sn" hint-placeholder-count="8">
+<button type="button" aria-pressed="{{ sn.sel }}" class="snap {{ sn.cls }}" onClick="{{ sn.pick }}">
+<span style="font-weight: 600; font-size: 14px">{{ sn.label }}</span>
+<span class="sub">{{ sn.sub }}</span>
+</button>
+</sc-for>
+</div>
+<button type="button" style="width: 100%; min-height: 44px; margin-top: 8px; border: 1px solid #C9CCC4; border-radius: 10px; background: #FFFFFF; font: 600 14px 'IBM Plex Sans', sans-serif; color: #15171A; cursor: pointer">Show older versions</button>
+</aside>
+
+<section style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; overflow: hidden">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 12px">
+<div>
+<div style="font-size: 13px; color: #5B6068">Viewing backup from <strong style="color: #15171A">{{ snapLabel }}</strong> on {{ planDest }}</div>
+<nav aria-label="Folder path" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 13px">
+<a href="#c">C:</a><span aria-hidden="true">›</span><a href="#users">Users</a><span aria-hidden="true">›</span><a href="#mom">Mom</a><span aria-hidden="true">›</span><a href="#pictures">Pictures</a><span aria-hidden="true">›</span><a href="#2024">2024</a><span aria-hidden="true">›</span><span>Grandkids</span>
+</nav>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<label style="display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #0E6B5C; margin: 0">Show deleted files</label>
+<label style="position: relative; display: block">
+<span style="position: absolute; left: -9999px">Search this backup</span>
+<input type="search" placeholder="Search this backup…" style="min-height: 44px; width: 240px; max-width: 100%; padding: 0 12px; border-radius: 10px; border: 1px solid #C9CCC4; font: 400 14px 'IBM Plex Sans', sans-serif; box-sizing: border-box">
+</label>
+</div>
+</div>
+<div style="overflow-x: auto">
+<div style="min-width: 720px">
+<div class="row" style="min-height: 40px; background: #F8F9F6; font-size: 12px; font-weight: 600; color: #5B6068; text-transform: uppercase; letter-spacing: 0.04em"><span></span><span></span><span>Name</span><span>Size</span><span>Modified</span><span>Status</span></div>
+<sc-for list="{{ files }}" as="f" hint-placeholder-count="7">
+<div class="row {{ f.rowCls }}">
+<input type="checkbox" id="{{ f.id }}" checked="{{ f.on }}" onChange="{{ f.toggle }}" style="width: 18px; height: 18px; accent-color: #0E6B5C; margin: 0">
+<sc-if value="{{ f.isFolder }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6068" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></sc-if>
+<sc-if value="{{ f.isFile }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6068" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg></sc-if>
+<label for="{{ f.id }}" style="font-size: 14px; font-weight: 500; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ f.name }}</label>
+<span style="font-size: 13px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">{{ f.size }}</span>
+<span style="font-size: 13px; color: #5B6068">{{ f.mod }}</span>
+<span><sc-if value="{{ f.hasTag }}" hint-placeholder-val="{{ false }}"><span class="tag {{ f.tag }}">{{ f.tagLabel }}</span></sc-if></span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border-top: 1px solid #DADDD6; background: #F8F9F6">
+<div style="font-size: 14px"><strong>{{ selLabel }}</strong> selected</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; background: #FFFFFF; font: 600 14px 'IBM Plex Sans', sans-serif; color: #15171A; cursor: pointer">Download as .zip</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; background: #FFFFFF; font: 600 14px 'IBM Plex Sans', sans-serif; color: #15171A; cursor: pointer">Restore to another folder…</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: #0E6B5C; font: 600 14px 'IBM Plex Sans', sans-serif; color: #FFFFFF; cursor: pointer">Restore to Mom &amp; Dad's PC</button>
+</div>
+</div>
+<p style="margin: 0; padding: 0 16px 16px; background: #F8F9F6; font-size: 13px; color: #5B6068">Files that already exist are never overwritten without asking — you can keep both copies.</p>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { plan: "usb", snap: 1, sel: { f3: true, f4: true, f7: true } };
+  }
+  renderVals() {
+    const s = this.state;
+    const planList = [
+      { id: "usb", label: "Everyday copy → WD Elements USB", dest: "WD Elements USB" },
+      { id: "nas", label: "Second copy → Family NAS", dest: "Family NAS" }
+    ];
+    const plans = planList.map((p) => ({
+      label: p.label, sel: s.plan === p.id, cls: s.plan === p.id ? "sel" : "",
+      pick: () => this.setState({ plan: p.id })
+    }));
+    const snapList = [
+      { label: "Today, 7:02 PM", sub: "In progress · 42%" },
+      { label: "Yesterday, 7:00 PM", sub: "2.9 GB changed · 214 files" },
+      { label: "Oct 13, 7:00 PM", sub: "640 MB changed · 58 files" },
+      { label: "Oct 12, 7:00 PM", sub: "1.1 GB changed · 97 files" },
+      { label: "Oct 11, 7:00 PM", sub: "12 MB changed · 6 files" },
+      { label: "Oct 10, 7:00 PM", sub: "3.4 GB changed · 301 files" },
+      { label: "Oct 1 (monthly)", sub: "Full set · 181 GB" },
+      { label: "Sep 1 (monthly)", sub: "Full set · 176 GB" }
+    ];
+    const snaps = snapList.map((x, i) => Object.assign({}, x, {
+      sel: s.snap === i, cls: s.snap === i ? "sel" : "",
+      pick: () => this.setState({ snap: i })
+    }));
+    const fileList = [
+      { id: "f1", name: "Birthday party", folder: true, size: "212 MB", mb: 212, mod: "Oct 12, 2:14 PM", tag: "" },
+      { id: "f2", name: "Lake trip", folder: true, size: "640 MB", mb: 640, mod: "Aug 30, 6:02 PM", tag: "" },
+      { id: "f3", name: "IMG_4410.jpg", folder: false, size: "4.2 MB", mb: 4.2, mod: "Oct 15, 5:41 PM", tag: "new" },
+      { id: "f4", name: "IMG_4411.jpg", folder: false, size: "3.9 MB", mb: 3.9, mod: "Oct 15, 5:42 PM", tag: "new" },
+      { id: "f5", name: "IMG_4387.jpg", folder: false, size: "4.6 MB", mb: 4.6, mod: "Oct 15, 9:10 AM", tag: "changed" },
+      { id: "f6", name: "Christmas card 2024.docx", folder: false, size: "88 KB", mb: 0.09, mod: "Dec 3, 2024", tag: "" },
+      { id: "f7", name: "Grandkids slideshow.mp4", folder: false, size: "412 MB", mb: 412, mod: "Oct 14, 8:55 PM", tag: "changed" },
+      { id: "f8", name: "IMG_4302.jpg", folder: false, size: "4.4 MB", mb: 4.4, mod: "Oct 2, 1:20 PM", tag: "deleted" }
+    ];
+    const labels = { "new": "New", changed: "Changed", deleted: "Deleted on PC" };
+    let n = 0;
+    let mb = 0;
+    const files = fileList.map((f) => {
+      const isOn = !!s.sel[f.id];
+      if (isOn) { n += 1; mb += f.mb; }
+      return Object.assign({}, f, {
+        on: isOn,
+        rowCls: isOn ? "on" : "",
+        isFolder: f.folder,
+        isFile: !f.folder,
+        hasTag: f.tag !== "",
+        tagLabel: labels[f.tag] || "",
+        toggle: () => this.setState({ sel: Object.assign({}, s.sel, { [f.id]: !isOn }) })
+      });
+    });
+    const plan = planList.find((p) => p.id === s.plan);
+    const sizeText = mb >= 1000 ? (mb / 1000).toFixed(2) + " GB" : mb.toFixed(1) + " MB";
+    return {
+      plans: plans,
+      snaps: snaps,
+      files: files,
+      snapLabel: snapList[s.snap].label,
+      planDest: plan.dest,
+      selLabel: n === 0 ? "Nothing" : n + (n === 1 ? " item" : " items") + " · " + sizeText
+    };
+  }
+}
+</script>
+</body>
+</html>

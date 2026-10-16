@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sparecopy – Mom &amp; Dad's PC</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.ok{background:#E3F1E7;color:#17652F}
+.run{background:#E3EBFC;color:#1E46B8}
+.warn{background:#FBEFD5;color:#7A4E00}
+.fail{background:#FBE4E1;color:#A3231A}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F3F4F1; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #15171A">
+<header style="background: #15171A; color: #F3F4F1">
+<div style="max-width: 1360px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; min-height: 64px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.01em">
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="2" y="6" width="15" height="17" rx="3" stroke="#7FD3C1" stroke-width="2"></rect><rect x="9" y="2" width="15" height="17" rx="3" fill="#15171A" stroke="#FFFFFF" stroke-width="2"></rect></svg>
+Sparecopy
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px; flex: 1 1 auto">
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Overview</a>
+<a href="Device.dc.html" aria-current="page" style="padding: 10px 14px; border-radius: 8px; background: #2C3037; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500">Devices</a>
+<a href="Plan.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Backup plans</a>
+<a href="Restore.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Restore</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Destinations</a>
+<a href="Main.dc.html" style="padding: 10px 14px; border-radius: 8px; color: #C9CDD3; text-decoration: none; font-size: 14px; font-weight: 500">Settings</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #C9CDD3; font-family: 'IBM Plex Mono', monospace">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #4ADE80"></span>
+Server online · Docker on Basement NAS
+</div>
+</div>
+</header>
+
+<main style="max-width: 1360px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box">
+<nav aria-label="Breadcrumb" style="font-size: 14px; color: #5B6068; display: flex; flex-wrap: wrap; gap: 8px">
+<a href="Main.dc.html">Overview</a><span aria-hidden="true">/</span><span>Parents' house</span><span aria-hidden="true">/</span><span style="color: #15171A">Mom &amp; Dad's PC</span>
+</nav>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 16px">
+<span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 14px; background: #FFFFFF; border: 1px solid #DADDD6">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M9 20h6M12 16v4"></path></svg>
+</span>
+<div>
+<h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em">Mom &amp; Dad's PC</h1>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 6px; font-size: 14px; color: #5B6068">
+<span>HP Pavilion · Windows 10 · Sparecopy agent 1.0.3</span>
+<span class="chip ok">Online via secure relay</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="Restore.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid #C9CCC4; background: #FFFFFF; color: #15171A; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">Browse &amp; restore</a>
+<a href="Plan.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; background: #0E6B5C; color: #FFFFFF; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">+ Add backup plan</a>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">Backup plans <span style="color: #5B6068; font-weight: 500">· 2</span></h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+
+<article style="flex: 1 1 400px; background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div>
+<div style="font-size: 12px; font-weight: 600; color: #5B6068; text-transform: uppercase; letter-spacing: 0.05em">Plan 1</div>
+<h3 style="margin: 4px 0 0; font-size: 20px; font-weight: 700">Everyday copy</h3>
+</div>
+<span class="chip run">Running · 42%</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: #F3F4F1">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 14h.01M11 14h6"></path></svg>
+<div>
+<div style="font-weight: 600; font-size: 15px">WD Elements USB drive</div>
+<div style="font-size: 13px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">Plugged into this PC · E:\Sparecopy</div>
+</div>
+</div>
+<div>
+<div style="height: 8px; border-radius: 4px; background: #E3EBFC"><div style="width: 42%; height: 8px; border-radius: 4px; background: #1E46B8"></div></div>
+<div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 13px; color: #5B6068"><span>38.2 of 91 GB changed data copied</span><span>about 12 min left</span></div>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: 100px 1fr; gap: 10px 14px; font-size: 14px">
+<dt style="color: #5B6068">What</dt><dd style="margin: 0">Pictures, Documents, Desktop, Videos<br><span style="color: #5B6068">184 GB selected · 4 exclusions</span></dd>
+<dt style="color: #5B6068">When</dt><dd style="margin: 0">Every day at 7:00 PM, and whenever the drive is plugged in</dd>
+<dt style="color: #5B6068">Keep</dt><dd style="margin: 0">30 daily · 12 monthly versions</dd>
+<dt style="color: #5B6068">Encrypted</dt><dd style="margin: 0">Yes · password set</dd>
+</dl>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid #ECEEE8; padding-top: 14px">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; background: #FFFFFF; font: 600 14px 'IBM Plex Sans', sans-serif; color: #15171A">Pause</button>
+<a href="Plan.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; color: #15171A; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">Edit plan</a>
+<a href="Restore.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; color: #15171A; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">Browse files</a>
+</div>
+</article>
+
+<article style="flex: 1 1 400px; background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div>
+<div style="font-size: 12px; font-weight: 600; color: #5B6068; text-transform: uppercase; letter-spacing: 0.05em">Plan 2</div>
+<h3 style="margin: 4px 0 0; font-size: 20px; font-weight: 700">Second copy</h3>
+</div>
+<span class="chip ok">OK · 3 h ago</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: #F3F4F1">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h3"></path></svg>
+<div>
+<div style="font-weight: 600; font-size: 15px">Family NAS</div>
+<div style="font-size: 13px; color: #5B6068; font-family: 'IBM Plex Mono', monospace">\\FAMILY-NAS\backups · same network</div>
+</div>
+</div>
+<div style="font-size: 13px; color: #5B6068">Last run today at 4:00 PM · 1.2 GB changed · took 4 min</div>
+<dl style="margin: 0; display: grid; grid-template-columns: 100px 1fr; gap: 10px 14px; font-size: 14px">
+<dt style="color: #5B6068">What</dt><dd style="margin: 0">Pictures, Documents, Desktop, Videos<br><span style="color: #5B6068">184 GB selected · 4 exclusions</span></dd>
+<dt style="color: #5B6068">When</dt><dd style="margin: 0">Every 4 hours, 8 AM – 10 PM</dd>
+<dt style="color: #5B6068">Keep</dt><dd style="margin: 0">14 daily · 8 weekly · 12 monthly versions</dd>
+<dt style="color: #5B6068">Encrypted</dt><dd style="margin: 0">Yes · password set</dd>
+</dl>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid #ECEEE8; padding-top: 14px">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #0E6B5C; background: #0E6B5C; font: 600 14px 'IBM Plex Sans', sans-serif; color: #FFFFFF">Run now</button>
+<a href="Plan.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; color: #15171A; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">Edit plan</a>
+<a href="Restore.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #C9CCC4; color: #15171A; font-weight: 600; font-size: 14px; text-decoration: none; box-sizing: border-box">Browse files</a>
+</div>
+</article>
+</div>
+
+<a href="Plan.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 64px; border: 1.5px dashed #B9BDB4; border-radius: 16px; color: #0E6B5C; font-weight: 600; font-size: 15px; text-decoration: none">+ Add another backup plan for this PC <span style="color: #5B6068; font-weight: 400">— e.g. a third copy to Adam's Basement NAS</span></a>
+
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; overflow: hidden">
+<h2 style="margin: 0; padding: 18px 20px; font-size: 18px; font-weight: 700; border-bottom: 1px solid #E6E8E2">Recent runs</h2>
+<div style="overflow-x: auto">
+<div style="min-width: 640px; font-size: 14px">
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 10px 20px; background: #F8F9F6; font-size: 12px; font-weight: 600; color: #5B6068; text-transform: uppercase; letter-spacing: 0.04em"><div>When</div><div>Plan</div><div>Result</div><div>Changed</div><div>Time</div></div>
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 12px 20px; border-top: 1px solid #ECEEE8; align-items: center"><div>Today, 7:02 PM</div><div>Everyday copy → USB</div><div><span class="chip run">Running</span></div><div style="font-family: 'IBM Plex Mono', monospace">38.2 GB</div><div>18 min</div></div>
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 12px 20px; border-top: 1px solid #ECEEE8; align-items: center"><div>Today, 4:00 PM</div><div>Second copy → Family NAS</div><div><span class="chip ok">Completed</span></div><div style="font-family: 'IBM Plex Mono', monospace">1.2 GB</div><div>4 min</div></div>
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 12px 20px; border-top: 1px solid #ECEEE8; align-items: center"><div>Today, 12:00 PM</div><div>Second copy → Family NAS</div><div><span class="chip ok">Completed</span></div><div style="font-family: 'IBM Plex Mono', monospace">310 MB</div><div>2 min</div></div>
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 12px 20px; border-top: 1px solid #ECEEE8; align-items: center"><div>Yesterday, 7:00 PM</div><div>Everyday copy → USB</div><div><span class="chip warn">Skipped 2 files</span></div><div style="font-family: 'IBM Plex Mono', monospace">2.9 GB</div><div>9 min</div></div>
+<div style="display: grid; grid-template-columns: 180px 1fr 140px 120px 90px; gap: 14px; padding: 12px 20px; border-top: 1px solid #ECEEE8; align-items: center"><div>Oct 14, 7:00 PM</div><div>Everyday copy → USB</div><div><span class="chip fail">Drive unplugged</span></div><div style="font-family: 'IBM Plex Mono', monospace">—</div><div>—</div></div>
+</div>
+</div>
+</section>
+</div>
+
+<aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 18px 20px">
+<h2 style="margin: 0 0 12px; font-size: 16px; font-weight: 700">About this device</h2>
+<dl style="margin: 0; display: grid; grid-template-columns: 110px 1fr; gap: 10px 12px; font-size: 14px">
+<dt style="color: #5B6068">Belongs to</dt><dd style="margin: 0">Mom &amp; Dad</dd>
+<dt style="color: #5B6068">Location</dt><dd style="margin: 0">Parents' house</dd>
+<dt style="color: #5B6068">Connection</dt><dd style="margin: 0">Secure relay to your server — no port forwarding needed</dd>
+<dt style="color: #5B6068">Last seen</dt><dd style="margin: 0">Just now</dd>
+<dt style="color: #5B6068">Disk C:</dt><dd style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px">412 of 931 GB used</dd>
+</dl>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 18px 20px">
+<h2 style="margin: 0 0 12px; font-size: 16px; font-weight: 700">Alerts</h2>
+<ul style="margin: 0; padding: 0 0 0 18px; font-size: 14px; display: flex; flex-direction: column; gap: 8px">
+<li>Email Adam if any backup fails</li>
+<li>Email Adam if this PC isn't seen for 3 days</li>
+<li>Show a reminder on this PC when the USB drive has been unplugged for 2 days</li>
+</ul>
+<a href="#alerts" style="display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 600">Edit alerts</a>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #DADDD6; border-radius: 16px; padding: 18px 20px">
+<h2 style="margin: 0 0 8px; font-size: 16px; font-weight: 700">Protection</h2>
+<p style="margin: 0; font-size: 14px; color: #3D4148; line-height: 1.5">This PC has <strong>2 copies</strong> on <strong>2 different devices</strong>. Add an offsite copy (another house) to cover fire or theft.</p>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
