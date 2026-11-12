@@ -1,0 +1,201 @@
+<UserControl x:Class="Sparecopy.Views.OverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- The one-page monitor: every device, plan and destination. Layout only for now. -->
+    <StackPanel>
+        <!-- Title -->
+        <DockPanel Margin="0,0,0,16">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <Button Style="{StaticResource GhostButton}" Click="Soon_Click" Tag="Running backups" Margin="0,0,8,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE768;" Style="{StaticResource Icon}" Margin="0,0,7,0" />
+                        <TextBlock Text="Run all due backups" />
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource PrimaryButton}" Click="Soon_Click" Tag="Adding devices">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE710;" Style="{StaticResource Icon}" Margin="0,0,7,0" />
+                        <TextBlock Text="Add device" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Overview" Style="{StaticResource PageTitle}" HorizontalAlignment="Left" />
+                <TextBlock Text="Every computer and phone in your family, in one place." Style="{StaticResource Muted}" Margin="0,4,0,0" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Preview banner -->
+        <Border Background="{DynamicResource Brush.AccentSoft}" CornerRadius="10" Padding="16,13" Margin="0,0,0,16">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="&#xE946;" Style="{StaticResource Icon}" FontSize="18"
+                           Foreground="{DynamicResource Brush.Accent}" Margin="0,0,12,0" VerticalAlignment="Top" />
+                <TextBlock TextWrapping="Wrap" LineHeight="19">
+                    <Run Text="Welcome to the Sparecopy preview." FontWeight="SemiBold" />
+                    <Run Text="This first release sets up the app. Nothing is being backed up yet: devices, backup plans, schedules, restores, phones and Sparecopy Server are all coming soon. Pick any section above to see what's planned." />
+                </TextBlock>
+            </DockPanel>
+        </Border>
+
+        <!-- KPI tiles -->
+        <UniformGrid Rows="1" Margin="0,0,-12,16">
+            <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Devices protected" Style="{StaticResource Muted}" FontSize="12" FontWeight="SemiBold" />
+                    <TextBlock Text="—" FontSize="28" FontWeight="Bold" Margin="0,4,0,0" Foreground="{DynamicResource Brush.TextMuted}" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Backups in the last 24 hours" Style="{StaticResource Muted}" FontSize="12" FontWeight="SemiBold" />
+                    <TextBlock Text="—" FontSize="28" FontWeight="Bold" Margin="0,4,0,0" Foreground="{DynamicResource Brush.TextMuted}" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Data protected" Style="{StaticResource Muted}" FontSize="12" FontWeight="SemiBold" />
+                    <TextBlock Text="—" FontSize="28" FontWeight="Bold" Margin="0,4,0,0" Foreground="{DynamicResource Brush.TextMuted}" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Destinations online" Style="{StaticResource Muted}" FontSize="12" FontWeight="SemiBold" />
+                    <TextBlock Text="—" FontSize="28" FontWeight="Bold" Margin="0,4,0,0" Foreground="{DynamicResource Brush.TextMuted}" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <Grid Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="340" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Devices by location -->
+            <Border Style="{StaticResource Card}" Padding="0" ClipToBounds="True">
+                <StackPanel>
+                    <DockPanel Margin="18,16,18,14">
+                        <Border DockPanel.Dock="Right" Style="{StaticResource SoonPill}">
+                            <TextBlock Text="COMING SOON" Style="{StaticResource PillText}" />
+                        </Border>
+                        <Border DockPanel.Dock="Left" Style="{StaticResource IconTile}" Margin="0,0,12,0">
+                            <TextBlock Text="&#xE80F;" Style="{StaticResource Icon}" FontSize="18" HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource Brush.Accent}" />
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Devices by location" Style="{StaticResource CardTitle}" />
+                            <TextBlock Text="Your place, your family's house, and every backup each device makes." Style="{StaticResource Muted}" FontSize="12" />
+                        </StackPanel>
+                    </DockPanel>
+                    <Grid x:Name="DevicesTableHost" MinHeight="300">
+                        <!-- Skeleton rows are inserted here from code-behind -->
+                        <Border Style="{StaticResource Card}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Padding="26,18" Margin="24,30,24,0" MaxWidth="440">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="&#xE770;" Style="{StaticResource Icon}" FontSize="26" HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource Brush.Accent}" />
+                                <TextBlock Text="No devices yet" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,4" />
+                                <TextBlock Style="{StaticResource Muted}" TextAlignment="Center"
+                                           Text="Adding computers and phones is coming soon. Each one will show where it backs up, for example a laptop to the NAS, or a PC to the USB drive plugged into it." />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Destinations + activity -->
+            <StackPanel Grid.Column="2">
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <Button DockPanel.Dock="Right" Style="{StaticResource BaseButton}" Padding="8,4" MinHeight="30"
+                                    Foreground="{DynamicResource Brush.Accent}" FontWeight="SemiBold"
+                                    Click="Soon_Click" Tag="Adding destinations" Content="+ Add" />
+                            <TextBlock Text="Destinations" Style="{StaticResource CardTitle}" VerticalAlignment="Center" />
+                        </DockPanel>
+                        <DockPanel Margin="0,6">
+                            <TextBlock DockPanel.Dock="Left" Text="&#xEDA2;" Style="{StaticResource Icon}" FontSize="20" Width="34" />
+                            <StackPanel>
+                                <TextBlock Text="NAS shared folder" FontWeight="SemiBold" />
+                                <TextBlock Text="A Synology, QNAP or any SMB share" Style="{StaticResource Muted}" FontSize="12" />
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Margin="0,6">
+                            <TextBlock DockPanel.Dock="Left" Text="&#xE968;" Style="{StaticResource Icon}" FontSize="20" Width="34" />
+                            <StackPanel>
+                                <TextBlock Text="Server computer" FontWeight="SemiBold" />
+                                <TextBlock Text="A folder on a PC or home server" Style="{StaticResource Muted}" FontSize="12" />
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Margin="0,6">
+                            <TextBlock DockPanel.Dock="Left" Text="&#xE88E;" Style="{StaticResource Icon}" FontSize="20" Width="34" />
+                            <StackPanel>
+                                <TextBlock Text="USB hard drive" FontWeight="SemiBold" />
+                                <TextBlock Text="Plugged straight into the PC it backs up" Style="{StaticResource Muted}" FontSize="12" />
+                            </StackPanel>
+                        </DockPanel>
+                        <TextBlock Text="Adding destinations is coming soon." Style="{StaticResource Muted}" FontSize="12" Margin="0,8,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <TextBlock Text="Activity" Style="{StaticResource CardTitle}" Margin="0,0,0,12" />
+                        <StackPanel HorizontalAlignment="Center" Margin="0,8,0,8">
+                            <TextBlock Text="&#xE81C;" Style="{StaticResource Icon}" FontSize="24" HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource Brush.TextMuted}" />
+                            <TextBlock Text="Backups, restores and warnings from every device will show up here."
+                                       Style="{StaticResource Muted}" TextAlignment="Center" Margin="0,8,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- How it will work -->
+        <Border Style="{StaticResource Card}">
+            <StackPanel>
+                <TextBlock Text="HOW SPARECOPY WILL WORK" Style="{StaticResource SectionLabel}" Margin="0,0,0,14" />
+                <UniformGrid Columns="3" Margin="0,0,-20,0">
+                    <DockPanel Margin="0,0,20,0">
+                        <Border DockPanel.Dock="Left" Width="30" Height="30" CornerRadius="15" Margin="0,0,12,0" VerticalAlignment="Top"
+                                Background="{DynamicResource Brush.Accent}">
+                            <TextBlock Text="1" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource Brush.OnAccent}" />
+                        </Border>
+                        <StackPanel>
+                            <TextBlock Text="Run Sparecopy Server" FontWeight="SemiBold" FontSize="14" />
+                            <TextBlock Style="{StaticResource Muted}" Margin="0,3,0,0" LineHeight="18"
+                                       Text="Install it in Docker on your NAS or a home server. It hosts a dashboard you can open from any of your devices." />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Margin="0,0,20,0">
+                        <Border DockPanel.Dock="Left" Width="30" Height="30" CornerRadius="15" Margin="0,0,12,0" VerticalAlignment="Top"
+                                Background="{DynamicResource Brush.Accent}">
+                            <TextBlock Text="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource Brush.OnAccent}" />
+                        </Border>
+                        <StackPanel>
+                            <TextBlock Text="Add your devices" FontWeight="SemiBold" FontSize="14" />
+                            <TextBlock Style="{StaticResource Muted}" Margin="0,3,0,0" LineHeight="18"
+                                       Text="Put Sparecopy on each PC and phone, at your place or your family's. Devices in other houses connect securely with no router setup." />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Margin="0,0,20,0">
+                        <Border DockPanel.Dock="Left" Width="30" Height="30" CornerRadius="15" Margin="0,0,12,0" VerticalAlignment="Top"
+                                Background="{DynamicResource Brush.Accent}">
+                            <TextBlock Text="3" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource Brush.OnAccent}" />
+                        </Border>
+                        <StackPanel>
+                            <TextBlock Text="Choose where copies go" FontWeight="SemiBold" FontSize="14" />
+                            <TextBlock Style="{StaticResource Muted}" Margin="0,3,0,0" LineHeight="18"
+                                       Text="Give each device one or more backup plans: a USB drive, the NAS, a server, or all of them, each on its own schedule." />
+                        </StackPanel>
+                    </DockPanel>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

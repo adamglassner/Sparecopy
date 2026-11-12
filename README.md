@@ -1,8 +1,48 @@
 # Sparecopy
 
-Self-hosted backup for your own computers and your family's — to a NAS, a server, or a USB drive — with one web dashboard to watch and manage all of it from any device.
+<img src="assets/sparecopy-256.png" width="96" align="right" alt="Sparecopy icon" />
 
-> **Status:** mockup / planning. No backup code yet.
+Self-hosted backup for your own computers and your family's — to a NAS, a server, or a USB drive — with one web dashboard to watch and manage all of it from any device. A Bytehawk Studio app.
+
+> **Status: early preview (v0.1.0), Windows only.** This release is the app's shell: the Overview shows the planned
+> layout, and every other section is a "coming soon" page listing what it will do. **Nothing is backed up yet.**
+> Light and dark mode work (header toggle, or Settings → Appearance → "Match Windows").
+
+## What's in the app
+
+| Section | Status |
+| --- | --- |
+| **Overview** | Layout in place: devices by location, destinations, activity, how it will work |
+| **Devices** | Coming soon |
+| **Backup Plans** | Coming soon |
+| **Destinations** | Coming soon |
+| **Schedules** | Coming soon |
+| **Browse & Restore** | Coming soon |
+| **Activity** | Coming soon |
+| **Mobile** | Coming soon |
+| **Sparecopy Server** | Coming soon |
+| **Settings** | Appearance works; this PC, server connection and alerts are coming soon |
+
+## Download
+
+Windows 10/11 (x64). Get it from the [latest release](../../releases/latest):
+
+- **`Sparecopy-<version>-Setup.exe`**: installer with Start Menu shortcut, optional desktop shortcut and an
+  uninstaller. Installs just for you by default (no administrator prompt).
+- **`Sparecopy-<version>-win-x64.zip`**: portable. Unzip anywhere and run `Sparecopy.exe`.
+
+Or install it from the **[Bytehawk Studio Launcher](https://github.com/adamglassner/bytehawklauncher)**, which
+downloads the newest release, installs it and keeps it up to date. Neither needs .NET installed.
+
+## Building and releasing
+
+- Run from source: `run.bat` (needs the .NET 8 SDK).
+- Build the exe, zip and installer: `.\build.ps1` (needs the .NET 8 SDK and Inno Setup 6).
+- **Release:** change `<Version>` in `src/Sparecopy.Desktop/Sparecopy.Desktop.csproj` and push to `main`.
+  GitHub Actions ([build-release.yml](.github/workflows/build-release.yml)) builds on Windows, runs the self-test
+  (every page in both themes), installs and uninstalls the setup silently the way the launcher does, takes
+  screenshots, and publishes GitHub Release `v<version>` with the Setup .exe and the portable zip.
+- Icon and installer images: `python tools/make_icon.py` then `python tools/make_wizard_images.py`.
 
 ## Goals
 

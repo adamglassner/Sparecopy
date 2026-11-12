@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Light palette. Every key here must also exist in Dark.xaml. -->
+    <SolidColorBrush x:Key="Brush.Bg" Color="#F3F4F1" />
+    <SolidColorBrush x:Key="Brush.Surface" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.SurfaceAlt" Color="#F7F8F5" />
+    <SolidColorBrush x:Key="Brush.Border" Color="#DADDD6" />
+    <SolidColorBrush x:Key="Brush.Skeleton" Color="#E8EAE4" />
+    <SolidColorBrush x:Key="Brush.Text" Color="#15171A" />
+    <SolidColorBrush x:Key="Brush.TextMuted" Color="#5B6068" />
+    <SolidColorBrush x:Key="Brush.HoverOverlay" Color="#12000000" />
+
+    <SolidColorBrush x:Key="Brush.Header" Color="#15171A" />
+    <SolidColorBrush x:Key="Brush.HeaderText" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.HeaderMuted" Color="#C9CDD3" />
+    <SolidColorBrush x:Key="Brush.HeaderActive" Color="#2C3037" />
+    <SolidColorBrush x:Key="Brush.Toolbar" Color="#1F2328" />
+    <SolidColorBrush x:Key="Brush.ToolbarHover" Color="#2A2F35" />
+    <SolidColorBrush x:Key="Brush.ToolbarSelected" Color="#353B42" />
+    <SolidColorBrush x:Key="Brush.ToolbarIcon" Color="#7FD3C1" />
+
+    <SolidColorBrush x:Key="Brush.Brand" Color="#7FD3C1" />
+    <SolidColorBrush x:Key="Brush.Accent" Color="#0E6B5C" />
+    <SolidColorBrush x:Key="Brush.OnAccent" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.AccentSoft" Color="#E3F0EC" />
+    <SolidColorBrush x:Key="Brush.Info" Color="#1E46B8" />
+    <SolidColorBrush x:Key="Brush.InfoSoft" Color="#E3EBFC" />
+    <SolidColorBrush x:Key="Brush.Warn" Color="#7A4E00" />
+    <SolidColorBrush x:Key="Brush.WarnSoft" Color="#FBEFD5" />
+
+    <SolidColorBrush x:Key="Brush.ToastBg" Color="#15171A" />
+    <SolidColorBrush x:Key="Brush.ToastText" Color="#FFFFFF" />
+</ResourceDictionary>

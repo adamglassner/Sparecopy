@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Sparecopy</RootNamespace>
+    <AssemblyName>Sparecopy</AssemblyName>
+    <Product>Sparecopy</Product>
+    <Company>Bytehawk Studio</Company>
+    <Description>Self-hosted backup for your family's computers and phones, to a NAS, server or USB drive.</Description>
+    <!-- Releasing: change this and push to main. CI builds, tests and publishes GitHub Release v<Version>. -->
+    <Version>0.1.0</Version>
+    <Authors>Bytehawk Studio</Authors>
+    <Copyright>© 2026 Bytehawk Studio. MIT License.</Copyright>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <!-- Lets the project at least restore/compile on non-Windows machines; the app itself is Windows-only. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ApplicationIcon>Assets\sparecopy.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <!-- Single-file publish (build.ps1): bundle WPF's native DLLs into the exe too. -->
+  <PropertyGroup Condition="'$(PublishSingleFile)' == 'true'">
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\sparecopy.ico" />
+    <Resource Include="Assets\sparecopy.png" />
+  </ItemGroup>
+
+</Project>
